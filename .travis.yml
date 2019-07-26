@@ -1,6 +1,16 @@
+dist: xenial
 language: python
-python:
-  - "2.7"
+matrix:
+  include:
+    - name: docker-robottests
+      python: 3.7
+      env: TOXENV=docker-robottests
+    - name: py27-pylint
+      python: 2.7
+      env: TOXENV=py27,pylint
+    - name: py37-pylint3-docs
+      python: 3.7
+      env: TOXENV=py37,pylint3,docs
 install:
   - pip install tox
 script: tox
